@@ -1,0 +1,20 @@
+# Compiled class file
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+target
+build
+.gradle/
+
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
