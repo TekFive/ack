@@ -110,7 +110,11 @@ class Ack<T> private constructor(
             log.warn("ACK source {} failed to resolve {}: {}", source.describe(), name, e.message)
             return null
         }
-        if (raw == null) {
+        // Blank counts as unset: compose files commonly pass `${VAR:-}` through to
+        // the container, which yields an empty string for unset host config. An
+        // empty string must fall back to the default, not reach coerce() (where
+        // "".toDouble() and friends would throw).
+        if (raw == null || raw.isBlank()) {
             return null
         }
         return coerce(raw)
